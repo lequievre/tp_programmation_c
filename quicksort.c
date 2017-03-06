@@ -23,7 +23,6 @@ void main()
 
         initialiseTab(tab, size_of_tab);
 
-	int i;
 	printf("\n\nTableau non trie :");
 	afficheTab(tab, size_of_tab);
 
