@@ -8,7 +8,7 @@
 
 void triTab(int[], int);
 void triSousTab(int[], int, int);
-int choisirPivot(int[], int, int);
+int rangerTab(int[], int, int);
 void initialiseTab(int[], int);
 void afficheTab(int[], int);
 
@@ -26,14 +26,12 @@ void main()
 	printf("\n\nTableau non trie :");
 	afficheTab(tab, size_of_tab);
 
-	//quickSort(tab, 0, size_of_tab -1);
 	triTab(tab,size_of_tab);
 
 	printf("\n\nTableau trie :");
 	afficheTab(tab, size_of_tab);
 
 	printf("\n\nFIN\n\n");
-
 }
 
 void initialiseTab(int tab[], int size)
@@ -50,9 +48,9 @@ void afficheTab(int tab[], int size)
     printf(" %d ",tab[i]);
 }
 
-void triTab(int tab[],int size)
+void triTab(int tab[], int size)
 {
-	triSousTab(tab,0,size-1);
+    triSousTab(tab,0,size-1);
 }
 
 void triSousTab(int tab[], int left, int right)
@@ -61,14 +59,14 @@ void triSousTab(int tab[], int left, int right)
 
    if( left < right ) 
    {
-       j = choisirPivot(tab, left, right);
+       j = rangerTab(tab, left, right);
        triSousTab(tab, left, j-1);
        triSousTab(tab, j+1, right);
    }
 	
 }
 
-int choisirPivot(int tab[], int left, int right) {
+int rangerTab(int tab[], int left, int right) {
    int pivot, i, j, t;
    pivot = tab[left];
    i = left; j = right+1;
