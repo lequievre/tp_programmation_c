@@ -12,6 +12,8 @@
 #define NB_LIGNES 4
 #define NB_COLONNES 3
 
+#define ARRAY_ACCESS(a, i, j) ((a)[(i) * NB_COLONNES + (j)])
+
 /*
  * Ici on specifie les dimensions de la matrice
  */
@@ -55,6 +57,21 @@ void afficheMat3(int *mat, int m, int n)
 	}
 }
 
+/*
+ * Ici on passe toujours la matrice par pointeur simple.
+ * On utilise la macro 'ARRAY_ACCESS' pour acceder a mat[i][j].
+ */
+void afficheMat3_macro(int *mat, int m, int n)
+{
+    int i, j;
+    for (i = 0; i < m; i++)
+    {
+		for (j = 0; j < n; j++)
+			printf("%d ", ARRAY_ACCESS(mat,i,j)); // On utilise la macro 'ARRAY_ACCESS'.
+		printf("\n");
+	}
+}
+
 int main()
 {	
 	int m1[NB_LIGNES][NB_COLONNES] = {{1, 2, 3}, {4, 5, 6}, {7, 8, 9}, {10, 11, 12}};
@@ -70,6 +87,9 @@ int main()
 	
 	printf("\nAffichage 3 bis\n");
 	afficheMat3(&m1[0][0],NB_LIGNES,NB_COLONNES);
+	
+	printf("\nAffichage 3 avec macro\n");
+	afficheMat3_macro(&m1[0][0],NB_LIGNES,NB_COLONNES);
 	
 	printf("\nFIN\n");
 	

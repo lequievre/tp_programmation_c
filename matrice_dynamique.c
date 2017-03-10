@@ -15,11 +15,19 @@
 
 /*
  * Creation dynamique d'une matrice de 'nblignes' lignes et 'nbcolonnes' colonnes.
+ * Prototype de 'malloc' -> void * malloc ( size_t t );
+ * 'malloc' permet de réserver (si possible) un bloc de taille t (en bytes) et renvoie un pointeur vers l'adresse du bloc
+ * alloué s'il y a suffisament de mémoire disponible, la valeur NULL en cas d'erreur.
  * 
  */
 int ** creerMat(int nblignes, int nbcolonnes)
 {
-  int ** mat = (int **)malloc(nblignes * sizeof(int *)); // Prototype de malloc -> void * malloc ( size_t t );
+  int ** mat = (int **)malloc(nblignes * sizeof(int *));
+  if (mat == NULL)
+  {
+	  fprintf(stderr, "Allocation matrice impossible sur fichier %s a la ligne %d!\n", __FILE__, __LINE__-2);
+	  exit(EXIT_FAILURE);
+  }
   int i;
   for (i=0;i<nblignes;i++)
   {
