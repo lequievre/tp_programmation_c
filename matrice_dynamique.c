@@ -19,11 +19,11 @@
  */
 int ** creerMat(int nblignes, int nbcolonnes)
 {
-  int ** mat = malloc(nblignes * sizeof(int *));
+  int ** mat = (int **)malloc(nblignes * sizeof(int *)); // Prototype de malloc -> void * malloc ( size_t t );
   int i;
   for (i=0;i<nblignes;i++)
   {
-	mat[i] = malloc(nbcolonnes * sizeof(int));
+	mat[i] = (int *)malloc(nbcolonnes * sizeof(int));
   }
 
   return mat;
