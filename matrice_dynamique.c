@@ -31,7 +31,12 @@ int ** creerMat(int nblignes, int nbcolonnes)
   int i;
   for (i=0;i<nblignes;i++)
   {
-	mat[i] = (int *)malloc(nbcolonnes * sizeof(int));
+    mat[i] = (int *)malloc(nbcolonnes * sizeof(int));
+    if (mat[i] == NULL)
+    {
+      fprintf(stderr, "Allocation matrice impossible sur fichier %s a la ligne %d!\n", __FILE__, __LINE__-2);
+      exit(EXIT_FAILURE);
+    }
   }
 
   return mat;
