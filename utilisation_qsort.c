@@ -17,6 +17,7 @@
 void afficheTab(int tab[], int size)
 {
   int i;
+  
   for (i=0; i<size; i++)
     printf(" %d ",tab[i]);
 }
@@ -45,24 +46,24 @@ int compareTabCroissant(void const *a, void const *b)
  
 int main (void)
 {
-   // Declaration et initialisation du tableau a trier.
-   int tab[] = { 4, 6, -3, 4, 7 };
-   
-    // Calcul du nb d'elements du tableau.
-	int size_of_tab = sizeof(tab)/sizeof(*tab);
+  // Declaration et initialisation du tableau a trier.
+  int tab[] = { 4, 6, -3, 4, 7 };
+
+  // Calcul du nb d'elements du tableau.
+  int size_of_tab = sizeof(tab)/sizeof(*tab);
+
+  // Affichage du tableau non trie.
+  printf("\n\nTableau non trie :");
+  afficheTab(tab, size_of_tab);
+
+  // Tri du tableau via la fonction qsort().
+  qsort(tab, size_of_tab, sizeof(*tab), compareTabCroissant);
+
+  // Affichage du tableau trie
+  printf("\n\nTableau trie :");
+  afficheTab(tab, size_of_tab);
+
+  printf("\n\nFIN\n\n");
  
-   // Affichage du tableau non trie.
-   printf("\n\nTableau non trie :");
-   afficheTab(tab, size_of_tab);
- 
-   // Tri du tableau via la fonction qsort().
-   qsort(tab, size_of_tab, sizeof(*tab), compareTabCroissant);
- 
-   // Affichage du tableau trie
-   printf("\n\nTableau trie :");
-   afficheTab(tab, size_of_tab);
-   
-   printf("\n\nFIN\n\n");
- 
-   return 0;
+  return 0;
 }
