@@ -22,30 +22,30 @@ void afficheTab(int[], int);
 
 void main() 
 {
-	// Initialisation du tirage aleatoire.
-	srand(time(NULL));
-	
-	// Declaration d'un tableau d'entiers de taille MAX_SIZE_TAB.
-    int tab[MAX_SIZE_TAB];
-    
-    // Calcul le nb d'elements du tableau (pour le fun car connu par MAX_SIZE_TAB).
-	int size_of_tab = sizeof(tab)/sizeof(*tab);
+  // Initialisation du tirage aleatoire.
+  srand(time(NULL));
 
-	// Initialise le tableau avec des valeurs aleatoires
-    initialiseTab(tab, size_of_tab);
+  // Declaration d'un tableau d'entiers de taille MAX_SIZE_TAB.
+  int tab[MAX_SIZE_TAB];
 
-	// Affiche le tableau non trie
-	printf("\n\nTableau non trie :");
-	afficheTab(tab, size_of_tab);
+  // Calcul le nb d'elements du tableau (pour le fun car connu par MAX_SIZE_TAB).
+  int size_of_tab = sizeof(tab)/sizeof(*tab);
 
-	// Effectue le tri du tableau
-	triTab(tab,size_of_tab);
+  // Initialise le tableau avec des valeurs aleatoires
+  initialiseTab(tab, size_of_tab);
 
-	// Affiche le tableau trie
-	printf("\n\nTableau trie :");
-	afficheTab(tab, size_of_tab);
+  // Affiche le tableau non trie
+  printf("\n\nTableau non trie :");
+  afficheTab(tab, size_of_tab);
 
-	printf("\n\nFIN\n\n");
+  // Effectue le tri du tableau
+  triTab(tab,size_of_tab);
+
+  // Affiche le tableau trie
+  printf("\n\nTableau trie :");
+  afficheTab(tab, size_of_tab);
+
+  printf("\n\nFIN\n\n");
 }
 
 /*
@@ -55,6 +55,7 @@ void main()
 void initialiseTab(int tab[], int size)
 {
   int i;
+  
   for (i=0; i<size; i++)
     tab[i] = rand()%(MAX-MIN+1)+MIN;
 }
@@ -65,6 +66,7 @@ void initialiseTab(int tab[], int size)
 void afficheTab(int tab[], int size)
 {
   int i;
+  
   for (i=0; i<size; i++)
     printf(" %d ",tab[i]);
 }
@@ -92,7 +94,7 @@ void triSousTab(int tab[], int left, int right)
        triSousTab(tab, left, j-1); // Relance le tri sur la partie du gauche du sous tableau (sans le pivot).
        triSousTab(tab, j+1, right); // Relance le tri sur la partie droite du sous tableau (sans le pivot).
    }
-	
+   
 }
 
 /*
@@ -101,11 +103,14 @@ void triSousTab(int tab[], int left, int right)
  * On va parcourir le sous tableau de gauche à droite en icrementant left, mais aussi de droite a gauche en decrementant right.
  */
 int rangerTab(int tab[], int left, int right) {
+   
    int pivot, i, j, t;
+   
    pivot = tab[left]; // Le pivot est l'element de tab d'indice left.
    i = left; j = right+1; // On utilise une boucle de type 'do ... while', on entre forcement une fois dans la boucle, on pense donc a incrementer 'right' de 1.
    // L'indice i doit traiter tous les elements plus petit que le pivot (ceux a gauche du pivot).
    // L'indice j doit traiter tous les elements plus grand que le pivot (ceux a droite du pivot). 
+   
    while(1)
    {
    	do ++i; while( tab[i] <= pivot && i <= right );
@@ -113,7 +118,9 @@ int rangerTab(int tab[], int left, int right) {
    	if( i >= j ) break; // Les indices se croisent on a donc balaye tout le tableau.
    	t = tab[i]; tab[i] = tab[j]; tab[j] = t; // A l'indice i il y a un element plus gand que le pivot, a l'indice j un element plus petit que le pivot, il faut donc les inverser.
    }
+   
    t = tab[left]; tab[left] = tab[j]; tab[j] = t; // On pense a inverser le pivot (qui est au debut du sous tableau) avec le dernier plus petit element trouve.
+   
    return j; // Retourne le nouvel indice du pivot.
 }
 
