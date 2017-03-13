@@ -33,31 +33,50 @@ void donneLeDouble(int *v)
  
 int main (void)
 {
-  int age;
+	int age;
+
+	age = 32;
+	printf("Adresse de 'age' = %p, Valeur de 'age' = %d\n", &age, age);
+
+	// Declaration d'un pointeur d'entier, on pense a initialiser le pointeur a NULL.
+	int * unPointeur = NULL;
+	printf("Valeur de 'unPointeur' = %p\n",unPointeur);
+
+	// Appel de la fonction 'donneLeDouble' avec le pointeur 'unPointeur' en parametre. Mais ce pointeur vaut NULL !!
+	donneLeDouble(unPointeur);
+
+	// On affecte au pointeur 'unPointeur' l'adresse de la variable 'age'. Le pointeur 'unPointeur' pointe donc maintenant sur 'age'.
+	unPointeur = &age;
+	printf("Valeur de 'unPointeur' = %p\n",unPointeur);
+	printf("Valeur pointee par 'unPointeur' = %d\n",*unPointeur);
+
+	// Appel de la fonction 'donneLeDouble' avec le pointeur 'unPointeur' en parametre. Au retour de cette fonction, 
+	// la valeur pointee par un 'unPointeur' (c'est a dire celle de 'age') sera multipliee par 2 !
+	donneLeDouble(unPointeur);
+	printf("Adresse de 'age' = %p, Valeur de 'age' = %d\n", &age, age);
+	printf("Valeur de 'unPointeur' = %p, Valeur pointee par 'unPointeur' = %d\n", unPointeur, *unPointeur);
+	
+	printf("\n========================================================================================\n");
   
-  age = 32;
-  printf("Adresse de 'age' = %p, Valeur de 'age' = %d\n", &age, age);
+	// Allocation dynamique d'un emplacement memoire.
+	int* memoireAllouee = NULL;
+	memoireAllouee = (int *)malloc(sizeof(int)); // Allocation dynamique de la mémoire (de la taille d'un 'int').
+
+	if (memoireAllouee == NULL)
+	{
+		fprintf(stderr, "Danger : Impossible d'allouer de la memoire sur fichier %s a la ligne %d!\n", __FILE__, __LINE__-4);
+		exit(EXIT_FAILURE);
+	}
+	
+	// Utilisation de la mémoire allouee dynamiquement.
+	printf("Quel age avez-vous ? ");
+	scanf("%d", memoireAllouee); // Ici on passe un pointeur a la fonction 'scanf' !
+	printf("Vous avez %d ans\n", *memoireAllouee);
+
+	// Libération de la mémoire allouee dynamiquement. Cela empeche une fuite de memoire !
+	free(memoireAllouee);
   
-  // Declaration d'un pointeur d'entier, on pense a initialiser le pointeur a NULL.
-  int * unPointeur = NULL;
-  printf("Valeur de 'unPointeur' = %p\n",unPointeur);
-  
-  // Appel de la fonction 'donneLeDouble' avec le pointeur 'unPointeur' en parametre. Mais ce pointeur vaut NULL !!
-  donneLeDouble(unPointeur);
-  
-  // On affecte au pointeur 'unPointeur' l'adresse de la variable 'age'. Le pointeur 'unPointeur' pointe donc maintenant sur 'age'.
-  unPointeur = &age;
-  printf("Valeur de 'unPointeur' = %p\n",unPointeur);
-  printf("Valeur pointee par 'unPointeur' = %d\n",*unPointeur);
-  
-  // Appel de la fonction 'donneLeDouble' avec le pointeur 'unPointeur' en parametre. Au retour de cette fonction, 
-  // la valeur pointee par un 'unPointeur' (c'est a dire celle de 'age') sera multipliee par 2 !
-  donneLeDouble(unPointeur);
-  printf("Adresse de 'age' = %p, Valeur de 'age' = %d\n", &age, age);
-  printf("Valeur de 'unPointeur' = %p, Valeur pointee par 'unPointeur' = %d\n", unPointeur, *unPointeur);
-  
-  
-  printf("\n\nFIN\n\n");
+	printf("\n\nFIN\n\n");
  
   return 0;
 }
