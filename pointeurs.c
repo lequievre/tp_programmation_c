@@ -54,7 +54,7 @@ int main (void)
   // la valeur pointee par un 'unPointeur' (c'est a dire celle de 'age') sera multipliee par 2 !
   donneLeDouble(unPointeur);
   printf("Adresse de 'age' = %p, Valeur de 'age' = %d\n", &age, age);
-  printf("Adresse de 'unPointeur' = %p, Valeur de 'unPointeur' = %d\n", unPointeur, *unPointeur);
+  printf("Valeur de 'unPointeur' = %p, Valeur pointee par 'unPointeur' = %d\n", unPointeur, *unPointeur);
   
   
   printf("\n\nFIN\n\n");
