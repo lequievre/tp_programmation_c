@@ -68,12 +68,97 @@ int main (void)
     printf("\nNb de caracateres de chaineCopie = %zu\n",strlen(chaineCopie));
     printf("\nchaineCopie = %s\n",chaineCopie);
     
-    // 'strcat' : Concatene 2 chaines de caracters.
+    // 'strcat' : Concatene 2 chaines de caracteres.
     // char* strcat(char* chaine1, const char* chaine2);
     char chaine5[100] = "Salut ", chaine6[] = "les informaticiens !";
     strcat(chaine5, chaine6); // On concatène chaine6 dans chaine5.
-    printf("\nchaine5 = %s, chaine6 = %s\n", chaine5, chaine6);
+    printf("\nla concatenation se trouve dans chaine5 = \"%s\", chaine6 = \"%s\"\n", chaine5, chaine6);
     
+    // 'strcmp' : comparer 2 chaines de caracteres.
+    // int strcmp(const char* chaine1, const char* chaine2);
+    // retourne : 0 si les chaînes sont identiques, une autre valeur (positive ou négative) si les chaînes sont différentes.
+    char chaine7[] = "Coucou", chaine8[] = "Coucou";
+    if (strcmp(chaine7, chaine8) == 0) // Si chaînes identiques
+    {
+        printf("Les chaines 'chaine7' et 'chaine8' sont identiques\n");
+    }
+    else
+    {
+        printf("Les chaines 'chaine7' et 'chaine8' sont differentes\n");
+    }
+    
+    // 'strchr' : rechercher la premiere occurence d'un caractere.
+    // char* strchr(const char* chaine, int caractereARechercher);
+    // La fonction renvoie un pointeur vers le premier caractère qu'elle a trouvé, NULL si elle n'a rien trouvé.
+    char chaine9[] = "Une chaine de test", *suiteChaine = NULL;
+
+    suiteChaine = strchr(chaine9, 'e');
+
+    if (suiteChaine != NULL) // Si on a trouvé le caractere
+    {
+        printf("\nVoici la fin de la chaine a partir du premier \'e\' : \"%s\"", suiteChaine);
+    }
+    
+    // variante 'strrchr' : recherche la derniere occurence d'un caractere.
+    // char *strrchr(const char *str, int c)
+    suiteChaine = strrchr(chaine9, 'e');
+
+    if (suiteChaine != NULL) // Si on a trouvé le caractere
+    {
+        printf("\nVoici la fin de la chaine a partir du dernier \'e\' : \"%s\"", suiteChaine);
+    }
+    
+    // 'strstr' : rechercher une chaîne dans une autre.
+    // char* strstr(const char* chaine, const char* chaineARechercher);
+    
+    // On cherche la première occurrence de "test" dans "Texte de test" :
+
+    suiteChaine = strstr(chaine9, "test");
+
+    if (suiteChaine != NULL)
+    {
+        printf("\nPremiere occurrence de \"test\" dans 'chaine9' : \"%s\"\n", suiteChaine);
+    }
+    
+    // 'sprintf' : écrire dans une chaîne (fait partie de 'stdio.h')
+    char chaine10[100];
+    int age = 15;
+
+    // On écrit "Tu as 15 ans" dans chaine10
+    sprintf(chaine10, "Tu as %d ans !", age);
+
+    printf("'chaine10' = \"%s\"", chaine10);
+    
+    // ************************************************************************
+    // Utilisation des fonctions de conversion chaine -> nombre dans 'stdib.h'
+    // ************************************************************************
+    
+    // Règles générales pour la conversion :
+    // - Les espaces au début d'une chaîne sont ignorés
+    // - Il n'y a pas de contrôle du domaine de la cible
+    // - La conversion s'arrête au premier caractère non convertible
+    // - Pour une chaîne non convertible, les fonctions retournent zéro
+    
+    // 'atoi' : conversion d'une chaine de caracteres en un entier.
+    // int atoi(const char *nptr);
+    
+    char chaine11[100] = "645";
+	printf("\nLa conversion en int de 'chaine11' = %d",atoi(chaine11));
+	
+	strcpy(chaine11,"     56  ");
+	printf("\nLa conversion en int de 'chaine11' = %d",atoi(chaine11));
+	
+	strcpy(chaine11,"     567b78  ");
+	printf("\nLa conversion en int de 'chaine11' = %d",atoi(chaine11));
+	
+	strcpy(chaine11,"     toto567b78  ");
+	printf("\nLa conversion en int de 'chaine11' = %d",atoi(chaine11));
+	
+	// 'atof' : conversion d'une chaine de caracteres en un double
+	// double atof(const char *nptr);
+	
+	strcpy(chaine11,"     123.789  ");
+	printf("\nLa conversion en double de 'chaine11' = %f",atof(chaine11));
     
 	printf("\n\nFIN\n\n");
 
