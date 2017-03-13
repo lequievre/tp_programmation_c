@@ -50,7 +50,7 @@ int main (void)
   printf("Valeur de 'unPointeur' = %p\n",unPointeur);
   printf("Valeur pointee par 'unPointeur' = %d\n",*unPointeur);
   
-  // Appel de la fonction 'donneLeDouble' avec le pointeur 'unPointeur' en parametre. On retour de cette fonction, 
+  // Appel de la fonction 'donneLeDouble' avec le pointeur 'unPointeur' en parametre. Au retour de cette fonction, 
   // la valeur pointee par un 'unPointeur' (c'est a dire celle de 'age') sera multipliee par 2 !
   donneLeDouble(unPointeur);
   printf("Adresse de 'age' = %p, Valeur de 'age' = %d\n", &age, age);
