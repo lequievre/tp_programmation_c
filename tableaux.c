@@ -16,6 +16,7 @@
 void afficheTab(int [], int n);
 void afficheTabPt(int *[], int n);
 void afficheTabPt2(int **, int n);
+void afficheTabPt3(int (*)[], int n);
 
 int main()
 {	
@@ -67,6 +68,14 @@ int main()
 	afficheTabPt(tab2,NB_ELEMENTS); // Appel de la fonction 'afficheTabPt' en lui passant 'tab2' qui est un tableau de pointeurs de int et son nb d'élements.
 	
 	afficheTabPt2(tab2,NB_ELEMENTS); // Appel de la fonction 'afficheTabPt2' en lui passant tab2' et son nb d'élements.
+	
+	int (*pt3)[NB_ELEMENTS]; // On déclare un pointeur sur un tableau de NB_ELEMENTS de 'int'. Observer les parenthèses autour de '*'.
+	// ATTENTION de ne pas confondre avec : int *p3[NB_ELEMENTS] -> qui un tableau de NB_ELEMENTS de pointeurs de 'int'.
+	
+	pt3 = &tab1; // On affecte à pt3 qui est pointeur, l'adresse du tableau 'tab1', c'est à dire l'adresse de son 1er élément.
+	printf("\n pt3 = %p \n",pt3); // pt3 = 0x101.
+	
+	afficheTabPt3(pt3,NB_ELEMENTS);
 	
 	printf("\nFIN\n");
 	return EXIT_SUCCESS;	
@@ -121,6 +130,7 @@ void afficheTabPt(int *t[], int n)
  * Affiche le contenu d'un tableau t passé en paramètre sous forme de pointeur de pointeur. 
  * La variable 'n' contient le nb d'éléments du tableau.
  * Ici 'int **t' sera interprété comme un pointeur de pointeur vers un int.
+ * En fait un pointeur vers le premier élément du tableau de pointeurs, qui est donc un pointeur vers un 'int'.
  */
 void afficheTabPt2(int **t, int n)
 {
@@ -134,9 +144,29 @@ void afficheTabPt2(int **t, int n)
 	{
 		// On peut utiliser l'opérateur [] comme ceci :
 		printf(" %d",*t[i]); // Ici *t[i] sera interprété comme : *( *((t) + (i)) )
+		
 		// On peut aussi faire de l'arithmétique de pointeur comme ceci :
 		printf(" %d",*( *((t) + (i)) )); // // *((t) + (i)) donne le pointeur de la ième case du tableau, pour obtenir la valeur pointée il faut le déréférencer.
 		
+	}
+	printf("\n");
+}
+
+
+/*
+ * Affiche le contenu d'un tableau pointé par le pointeur t.
+ * La variable 'n' contient le nb d'éléments du tableau.
+ * Ici 'int (*t)[]' sera interprété comme un pointeur sur un tableau de 'int'.
+ * 
+ */
+void afficheTabPt3(int (*t)[], int n)
+{
+	int i;
+	printf("\n Pointeur sur tableau : ");
+
+	for (i=0; i<n; ++i)
+	{
+		printf(" %d",(*t)[i]); // Ici on déréférence t avec (*t) qui nous donne accès au tableau, puis on peut utiliser l'opérateur [].
 	}
 	printf("\n");
 }
