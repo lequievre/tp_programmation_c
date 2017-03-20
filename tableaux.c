@@ -109,7 +109,7 @@ void afficheTabPt(int *t[], int n)
 
 	for (i=0; i<n; ++i)
 	{
-		printf(" %d",*t[i]); // Ici t[i] sera interprété comme : *( *((t) + (i)) )
+		printf(" %d",*t[i]); // Ici *t[i] sera interprété comme : *( *((t) + (i)) )
 		// *((t) + (i)) donne le contenu de la ième case du tableau (qui est un 'int *')
 		// Pour obtenir la valeur pointée il faut le déréférencer soit : *( *((t) + (i)) )
 	}
@@ -133,7 +133,7 @@ void afficheTabPt2(int **t, int n)
 	for (i=0; i<n; ++i)
 	{
 		// On peut utiliser l'opérateur [] comme ceci :
-		printf(" %d",*t[i]); // Ici t[i] sera interprété comme : *( *((t) + (i)) )
+		printf(" %d",*t[i]); // Ici *t[i] sera interprété comme : *( *((t) + (i)) )
 		// On peut aussi faire de l'arithmétique de pointeur comme ceci :
 		printf(" %d",*( *((t) + (i)) )); // // *((t) + (i)) donne le pointeur de la ième case du tableau, pour obtenir la valeur pointée il faut le déréférencer.
 		
