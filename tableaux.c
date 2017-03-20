@@ -12,11 +12,14 @@
 #include <stdlib.h>
 
 #define NB_ELEMENTS 3
+#define NB_COL 2
 
 void afficheTab(int [], int n);
 void afficheTabPt(int *[], int n);
 void afficheTabPt2(int **, int n);
 void afficheTabPt3(int (*)[], int n);
+
+void afficheMat(int nbl, int nbc, int m[][nbc]);
 
 int main()
 {	
@@ -75,7 +78,21 @@ int main()
 	pt3 = &tab1; // On affecte à pt3 qui est pointeur, l'adresse du tableau 'tab1', c'est à dire l'adresse de son 1er élément.
 	printf("\n pt3 = %p \n",pt3); // pt3 = 0x101.
 	
-	afficheTabPt3(pt3,NB_ELEMENTS);
+	afficheTabPt3(pt3,NB_ELEMENTS); // On affiche les NB_ELEMENTS du tableau pointé par 'pt3'.
+	
+	int mat[NB_ELEMENTS][NB_COL] = { {1, 2}, {3, 4}, {5, 6} }; 	// Déclaration d'un tableau à 2 dimensions. NB_ELEMENTS lignes de NB_COL colonnes de 'int'.
+																// Il y a en mémoire NB_ELEMENTS successions de NB_COL 'int'.
+	
+	mat[2][1] = 12; // est interprété comme *((mat) + (2))[1] = 12. C'est à dire que l'on passe 2 sous tableaux de NB_COL éléments, on arrive donc sur le 3 ième sous tableau.
+					// puis on affecte son deuxième élément à 12.
+	
+	printf("\n mat[2][1] = %d \n", mat[2][1]); // mat[2][1] = 12.
+	
+	afficheMat(NB_ELEMENTS, NB_COL, mat);  // Affichage de la matrice 'mat'.
+	
+	int (*pt4)[NB_COL] = &mat[1]; // On déclare un pointeur sur un tableau qui est en fait le deuxième sous tableau de 'mat'.
+	
+	afficheTabPt3(pt4,NB_COL); // On affiche les NB_COL 'int' (Ici une ligne composée de NB_COL 'int' de la deuxième ligne de 'mat')
 	
 	printf("\nFIN\n");
 	return EXIT_SUCCESS;	
@@ -169,5 +186,21 @@ void afficheTabPt3(int (*t)[], int n)
 		printf(" %d",(*t)[i]); // Ici on déréférence t avec (*t) qui nous donne accès au tableau, puis on peut utiliser l'opérateur [].
 	}
 	printf("\n");
+}
+
+
+void afficheMat(int nbl, int nbc, int m[][nbc])
+{
+	int i,j;
+	
+	for (i=0; i<nbl; ++i)
+	{
+		for (j=0; j<nbc; ++j)
+		{
+			printf(" %d",m[i][j]);
+		}
+		printf("\n");
+	}
+	
 }
 
