@@ -189,6 +189,13 @@ void afficheTabPt3(int (*t)[], int n)
 }
 
 
+
+/*
+ * Affiche le contenu d'une matrice m de 'int'.
+ * La variable 'nbl' contient le nb de lignes.
+ * La variable 'nbc' contient le nb de colonnes.
+ * 
+ */
 void afficheMat(int nbl, int nbc, int m[][nbc])
 {
 	int i,j;
