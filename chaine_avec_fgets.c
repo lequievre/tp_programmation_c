@@ -17,8 +17,12 @@ void viderBuffer()
 {
     char c;
 
-    printf("Des caracteres sont en attentes dans le buffer\nSuppression en cours...\n");
-    do c=getchar(); while (c!='\n' && c!=EOF);
+    printf("Il y a des caracteres dans le buffer de stdin\nSuppression en cours...\n");
+
+    do
+      c=getchar();
+    while (c!='\n' && c!=EOF);
+
     printf("Le buffer est maintenant vide\n");
 }
 
